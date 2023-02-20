@@ -1,8 +1,3 @@
-import force as force
-
-from Helper_Modules.Test_Data.data_gen import unique_string
-
-
 class Messages:
 	text_box = ""
 	send_button = ""
@@ -27,7 +22,7 @@ def send_message_to_contact(page, text): #, receiver_contact="No", file="No", im
 	page.wait_for_timeout(5000)
 
 
-def receive_message(page, text, sender_contact, file="No", image="No"):
+def checked_if_message_received(page, text, file="No"): #sender_contact,
 	#page.locator(sender_contact).click()
 	page.locator("data-test-id=MenuCaption >> text = contacts").click()
 	#"[class=absolute] >> text = 1 >> nth = 2" for number on badge

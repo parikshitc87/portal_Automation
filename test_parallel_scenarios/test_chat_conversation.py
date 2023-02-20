@@ -2,7 +2,7 @@ import time
 
 from Helper_Modules.Common_Functions.portal import login_with
 from Helper_Modules.Test_Data.data_gen import contact_messenger_emails, unique_string
-from Page_Elements.Messenger_Elements.message_box import send_message_to_contact
+from Page_Elements.Messenger_Elements.message_box import send_message_to_contact, checked_if_message_received
 
 
 def test_chat_message_delivered_successfully(pre_test_setup):
@@ -12,5 +12,7 @@ def test_chat_message_delivered_successfully(pre_test_setup):
 	page1.wait_for_load_state("domcontentloaded")
 	page1.set_default_timeout(5000)
 	page1.wait_for_load_state('networkidle')
-	text = unique_string()
-	send_message_to_contact(page1, text) #, contact_messenger_emails["receiver"].split('c')[0])
+	message_text = unique_string()
+	send_message_to_contact(page1, message_text)
+	checked_if_message_received(page2, message_text) #, contact_messenger_emails["sender"].split('@')[0])
+
