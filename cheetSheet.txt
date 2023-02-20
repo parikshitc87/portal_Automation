@@ -1,0 +1,22 @@
+
+pytest --base-url=https://portal-master.my-portal.io/  --headed -k test_public_group_creation
+pytest -k test_register_private_account  --headed --base-url=https://portal-dev.my-portal.io/
+
+--slowmo 200
+
+-k test_method_name | folder name | -k
+
+
+
+
+pytest --base-url=https://portal-dev.dev.otc.workpage.io/  --headed -k test_groups_creation --slowmo 200
+
+py page = browser.new_page() page.set_viewport_size({"width": 640, "height": 480})
+
+--template=html1/index.html --report=sanity_automation_report.html
+
+--video=retain-on-failure
+--screenshots=only-on-failure
+
+--lf
+--ff
