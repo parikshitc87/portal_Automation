@@ -1,3 +1,5 @@
+from playwright.sync_api import expect
+
 from Helper_Modules.Test_Data import data_gen
 from Page_Elements.Events_Elements.events_elements import EventsPageElements
 from Page_Elements.HomePage_Elements.feed_post_elements import FeedPage
@@ -54,4 +56,4 @@ def create_event(page):
     page.locator(EventsPageElements.next_button).click()
     page.locator(EventsPageElements.create_button).click()
     page.wait_for_load_state("domcontentloaded")
-    page.wait_for_selector(EventsPageElements.event_created_success_message)
+    expect(page.wait_for_selector(EventsPageElements.event_created_success_message)).to_be_visible()
