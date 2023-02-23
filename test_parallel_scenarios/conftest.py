@@ -6,7 +6,7 @@ from Helper_Modules.Test_Data import data_gen
 
 @pytest.fixture(scope='session')
 def context_1(playwright):
-    browser = playwright.chromium.launch(headless=False, slow_mo=2000)
+    browser = playwright.chromium.launch(headless=False) #, slow_mo=2000)
     context = browser.new_context()
     page = context.new_page()
     page.goto('https://portal-dev.dev.otc.workpage.io')
@@ -23,7 +23,7 @@ def context_1(playwright):
 
 @pytest.fixture(scope='session')
 def context_2(playwright):
-    browser = playwright.chromium.launch(headless=False, slow_mo=2000)
+    browser = playwright.chromium.launch(headless=False) #, slow_mo=2000)
     context = browser.new_context()
     page = context.new_page()
     page.goto('https://portal-dev.dev.otc.workpage.io')

@@ -26,7 +26,14 @@ def check_text_message_received(page, message_text): #sender_contact,
 	page.wait_for_selector(f"data-test-id=Entity >> text = {message_text}", timeout=2000).click()
 
 
-def send_file_message_in_chat(page, file_location):
-	page.locator("#fileControl [data-test-id=\"Btn\"]").click()
-	page.locator("#fileControl [data-test-id=\"Btn\"]").set_input_files(file_location)
+def send_file_message_in_chat(page, file_location, file_name):
+	page.locator("data-test-id=MenuCaption >> text = contacts").click()
+	# clicking on contact to open chat window to see received message
+	page.wait_for_selector(".simplebar-content > .pt-1", timeout=2000).click()
+	#page.locator("[id = chatFileUpload]").click()
+	page.locator("[id = chatFileUpload]").set_input_files(file_location)
+	#page.wait_for_timeout(2000)
+	page.wait_for_selector(f"text = {file_name}")
 	page.locator("div:nth-child(2) > .p-0").click()
+
+

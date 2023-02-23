@@ -12,11 +12,15 @@ def rename_file(source_file, destination_file):
 	return destination_file
 
 
-def copy_file(source_file, destination_file):
+def copy_file(source_file_path, destination_file_path):
 	# Specify the source file path and name
-	source_file_path = '/path/to/source/file.txt'
+	#source_file_path = '/path/to/source/file.txt'
 	# Specify the destination file path and name
-	destination_file_path = '/path/to/destination/file.txt'
+	#destination_file_path = '/path/to/destination/file.txt'
 	# Copy the file
 	shutil.copyfile(source_file_path, destination_file_path)
-	return destination_file
+	return destination_file_path
+
+
+def delete_file(file_path):
+	os.remove(file_path)
