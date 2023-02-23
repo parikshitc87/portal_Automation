@@ -15,7 +15,7 @@ def test_text_message_delivered(pre_test_setup):
 	login_with(page2, contact_messenger_emails["receiver"])
 	login_with(page1, contact_messenger_emails["sender"])
 	page1.wait_for_load_state("domcontentloaded")
-	page1.set_default_timeout(5000)
+	#page1.set_default_timeout(5000)
 	page1.wait_for_load_state('networkidle')
 	message_text = unique_string()
 	send_text_message_to_contact(page1, message_text)
@@ -29,7 +29,7 @@ def test_file_message_delivered(pre_test_setup):
 	login_with(page1, contact_messenger_emails["sender"])
 	login_with(page2, contact_messenger_emails["receiver"])
 	page1.wait_for_load_state("domcontentloaded")
-	page1.set_default_timeout(5000)
+	#page1.set_default_timeout(5000)
 	page1.wait_for_load_state('networkidle')
 	unique_file_name = unique_string() + ".pdf"
 	unique_file_name_location = "Helper_Modules/Test_Files/"+unique_file_name
