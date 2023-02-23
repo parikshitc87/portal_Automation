@@ -31,7 +31,7 @@ def test_file_message_delivered(pre_test_setup):
 	page1.wait_for_load_state("domcontentloaded")
 	#page1.set_default_timeout(5000)
 	page1.wait_for_load_state('networkidle')
-	unique_file_name = unique_string() + ".pdf"
+	unique_file_name = unique_string()[::-1] + ".pdf"
 	unique_file_name_location = "Helper_Modules/Test_Files/"+unique_file_name
 	copy_file("Helper_Modules/Test_Files/sample_pdf.pdf", unique_file_name_location)
 	send_file_message_in_chat(page2, unique_file_name_location, unique_file_name)
