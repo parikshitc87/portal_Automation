@@ -100,7 +100,7 @@ def test_file_post_creation(login_person):
     with page.expect_file_chooser() as fc_info:
         page.click(FeedPage.attach_files)
     file_chooser = fc_info.value
-    file_chooser.set_files("Helper_Modules/Test_Files/sample.pdf")  # using a very small  size pdf
+    file_chooser.set_files("Helper_Modules/Test_Files/sample_pdf.pdf")  # using a very small  size pdf
     page.locator(FeedPage.post_textbox).fill(post_text)
     page.keyboard.press('Control+Enter')
     page.wait_for_load_state("networkidle")

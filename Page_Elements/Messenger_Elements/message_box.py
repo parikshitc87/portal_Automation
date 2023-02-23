@@ -9,17 +9,24 @@ class Messages:
 	message_center_top = ""
 
 
-def send_message_to_contact(page, message_text): #, receiver_contact="No", file="No", image="No"):
+def send_text_message_to_contact(page, message_text): #, receiver_contact="No", file="No", image="No"):
+	# clicking on contacts chat popup window
 	page.locator("data-test-id=MenuCaption >> text = contacts").click()
+	# clicking on contact to open chat window to see received message
 	page.wait_for_selector(".simplebar-content > .pt-1", timeout=2000).click()
 	page.wait_for_selector("[placeholder = \"Enter message...\"]", timeout=2000).fill(message_text)
 	page.keyboard.press('Enter')
-	page.wait_for_timeout(5000)
+	#page.wait_for_timeout(5000)
 
 
-def checked_if_message_received(page, message_text, file="No"): #sender_contact,
+def check_text_message_received(page, message_text): #sender_contact,
 	# clicking on contacts chat popup window
 	page.locator("data-test-id=MenuCaption >> text = contacts").click()
 	# clicking on contact to open chat window to see received message
 	page.wait_for_selector(f"data-test-id=Entity >> text = {message_text}", timeout=2000).click()
 
+
+def send_file_message_in_chat(page, file_location):
+	page.locator("#fileControl [data-test-id=\"Btn\"]").click()
+	page.locator("#fileControl [data-test-id=\"Btn\"]").set_input_files(file_location)
+	page.locator("div:nth-child(2) > .p-0").click()
