@@ -23,6 +23,8 @@ def test_send_contact_request_one(login_company):  #
 		page.wait_for_load_state("domcontentloaded")
 		page.locator(ProfilePage.contact_cancel_request_confirmation).click()
 
+	expect
+
 
 def test_send_contact_request_two(login_company):  #
 	page = login_company

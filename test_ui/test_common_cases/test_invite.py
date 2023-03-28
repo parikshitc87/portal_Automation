@@ -5,8 +5,8 @@ from Page_Elements.HomePage_Elements import home_page
 from test_ui.test_homePage import test_homepage
 
 
-def test_invite_new_user(login_company):  #
-    page = login_company
+def test_invite_new_user(login_person):  #
+    page = login_person
     page.get_by_role("button", name="Profile").click()
     page.get_by_role("link", name="Invite contacts").click()
     page.locator("#email input[type=\"text\"]").fill(data_gen.email())

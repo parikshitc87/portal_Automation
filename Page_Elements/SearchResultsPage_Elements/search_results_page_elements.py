@@ -1,5 +1,5 @@
 class SearchPage:
-    search_result_test_contact1 = "[data-test-id=\"ClickOutside\"] >> text= contact1"
+    search_result_test_contact1 = "[data-test-id=\"ClickOutside\"] >> text= automated contact1"
     search_results_filter_private_person = ""
 
 
