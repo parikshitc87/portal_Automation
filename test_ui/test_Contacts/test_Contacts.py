@@ -1,3 +1,5 @@
+from playwright.sync_api import expect
+
 from Helper_Modules.Test_Data import data_gen
 from Page_Elements.HomePage_Elements.feed_post_elements import FeedPage
 from Page_Elements.HomePage_Elements.home_page import HomePage
@@ -23,7 +25,7 @@ def test_send_contact_request_one(login_company):  #
 		page.wait_for_load_state("domcontentloaded")
 		page.locator(ProfilePage.contact_cancel_request_confirmation).click()
 
-	expect
+	expect(page.locator("text = Request sent >> nth = 0")).to_be_visible()
 
 
 def test_send_contact_request_two(login_company):  #
@@ -49,3 +51,9 @@ def test_send_contact_request_two(login_company):  #
 	page.wait_for_load_state("domcontentloaded")
 	page.wait_for_load_state("networkidle")
 	page.locator(FeedPage.contacts_link).click()
+	page.wait_for_load_state("domcontentloaded")
+	page.wait_for_load_state("networkidle")
+	page.locator("text = Sent requests").click()
+	page.wait_for_load_state("domcontentloaded")
+	page.wait_for_load_state("networkidle")
+	expect(page.locator(f"text = {data_gen.search_string_contact1}")).to_be_visible()
