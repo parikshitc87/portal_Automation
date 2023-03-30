@@ -1,7 +1,10 @@
 class EventsPageElements:
     new_events_button = "text = New event"
     event_name = "[placeholder=\"Caption\"]"
-    date = "[placeholder=\"Pick a date\"]"
+    start_date = "[placeholder=\"Select a start date\"]"
+    start_date_hh = "input[name=\"time_h\"]"
+    end_date_hh = "input[name=\"endTime_h\"]"
+    end_date = "[placeholder=\"Select an end date\"]"
     time_hh = "input[name=\"time_h\"]"
     time_mm = "[placeholder=\"mm\"]"
     next_button = "text = Next"
