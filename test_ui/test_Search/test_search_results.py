@@ -60,7 +60,7 @@ def test_groups_search(login_person):
 
 def test_filtered_groups_search(login_person):
     page = login_person
-    search_string = create_group(page, "public")
+    search_string = "00001000020000aqz"
     search_results_filter(page, "Groups", search_string)
 
 
