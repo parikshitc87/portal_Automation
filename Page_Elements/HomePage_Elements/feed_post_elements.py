@@ -3,7 +3,7 @@ class FeedPage:
     post_button_person_profile = 'button >> text = Post >> nth = 0'  # for person profile login
     post_button_company_profile = 'button >> text = Post >> nth = 1'  # for company profile login
     top_post_kebab_menu_button = "text = Like Comment Share >> button >> nth=3"
-    top_post_share_button = "text = Share"
+    top_post_share_button = "text = Share >> nth = 0"
     top_post_comment_button = "text = Comment"
     top_post_direct_link = ""
     top_post_profile_link = ""

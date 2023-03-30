@@ -18,7 +18,7 @@ def test_text_post_creation(login_person):  # Create a post with post button
     assert page.locator(f"text = {feed_post_text}").is_enabled()
 
 
-def test_text_post_creation_company(login_company):
+def test_company_text_post_creation(login_company):
     page = login_company
     feed_post_text = data_gen.post_text()
     page.locator(FeedPage.post_textbox).fill(feed_post_text)
@@ -58,7 +58,7 @@ def test_share_post(login_person):
     page.wait_for_load_state("domcontentloaded")
     page.wait_for_selector(FeedPage.share_popup_share_button)
     page.locator(FeedPage.share_popup_share_button).click()
-    assert page.locator(FeedPage.share_success_operational_notification).is_enabled()
+    expect(page.locator(FeedPage.share_success_operational_notification)).to_be_visible()
 
 
 # Verify comment creation
