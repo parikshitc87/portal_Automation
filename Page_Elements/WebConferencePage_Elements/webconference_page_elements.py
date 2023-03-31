@@ -9,7 +9,7 @@ class ConferencePage:
     create_button = "button:has-text(\"Create\")"
     cross_on_conference_help_popup = ".absolute.inset-x-0 .button >> nth = 1"
     conference_rooms_tab = "text=Conference rooms"
-    standard_conf_room = "text=Standard conference room >> nth=4"
+    standard_conf_room = "text=Standard conference room >> nth=2"
     standard_conf_room_new_conf_button = "text=Create web conference"
     conference_creation_success_message = "text=The web conference successfully created"
     closed_conference_radio_button = "text = Closed conference"
