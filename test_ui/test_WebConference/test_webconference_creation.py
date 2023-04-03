@@ -5,12 +5,13 @@ from Page_Elements.WebConferencePage_Elements.webconference_page_elements import
 
 def test_create_conference_buttons(login_company):
     page = login_company
+    flag = 0
     page.wait_for_load_state("domcontentloaded")
     page.get_by_role("link", name="Web conferences").click()
     page.wait_for_load_state("domcontentloaded")
     page.locator("[data-test-id=\"PageNavMenu\"] [data-test-id=\"Btn\"]").click()
     page.locator("header:has-text(\"Create a web conference\")").get_by_role("button").click()
-    flag = 1
+    flag += 1
     page.locator("[data-test-id=\"PageOverview\"]").get_by_role("button", name="New conference").click()
     page.get_by_role("heading", name="Create a web conference").click()
     page.locator("header:has-text(\"Create a web conference\")").get_by_role("button").click()
