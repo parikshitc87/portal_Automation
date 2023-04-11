@@ -35,6 +35,7 @@ def test_file_message_delivered(pre_test_setup):
 	unique_file_name = unique_string()[::-1][:6] + ".pdf"
 	page1.locator(HomePage.search_box).fill(data_gen.search_string_contact1)
 	page1.keyboard.press("Enter")
+	#	page1.get_by_role("link", name="Groups").click()
 	page2.wait_for_load_state("domcontentloaded")
 	page2.wait_for_load_state('networkidle')
 	unique_file_name_location = "Helper_Modules/Test_Files/"+unique_file_name

@@ -9,13 +9,15 @@ from Page_Elements.login_page_elements import LoginPage
 def test_register_person(set_up):  # Registers a person account
 	page = set_up
 	register(page, "person")
-	assert page.is_enabled(LoginPage.registration_success_message)
+	#   assert page.is_enabled(LoginPage.registration_success_message)
+	expect(page.locator(LoginPage.registration_success_message)).to_be_visible()
 
 
 def test_register_company(set_up):  # Registers a company account
 	page = set_up
 	register(page, "company")
-	assert page.is_enabled(LoginPage.registration_success_message)
+	#   assert page.is_enabled(LoginPage.registration_success_message)
+	expect(page.locator(LoginPage.registration_success_message)).to_be_visible()
 
 
 def test_register_and_confirm_person(set_up):  # registers Person and confirms registration from email
@@ -137,7 +139,7 @@ def create_profile_company(page, profile_info):
 	# page.wait_for_url("https://portal-dev.dev.otc.workpage.io/home")
 	page.wait_for_load_state("domcontentloaded")
 	page.wait_for_load_state("networkidle")
-	page.locator("div:nth-child(7) > div > div > .pt-4 > .text-white").click()
+	page.get_by_role("button", name="Select package").nth(1).click()
 	page.wait_for_load_state("domcontentloaded")
 	page.wait_for_load_state("networkidle")
 	page.get_by_role("button", name="Next").click()
