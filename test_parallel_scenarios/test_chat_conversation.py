@@ -45,5 +45,6 @@ def test_file_message_delivered(pre_test_setup):
 	page2.wait_for_load_state("networkidle")
 	delete_file(unique_file_name_location)
 	page1.close()
+	page2.wait_for_selector(f"text = {unique_file_name}")
 	expect(page2.locator(f"text = {unique_file_name}")).to_be_visible()
 
