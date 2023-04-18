@@ -25,6 +25,7 @@ def test_text_message_delivered(pre_test_setup):
 	expect(page2.locator(f"data-test-id=LinkRenderer >> text = {message_text}")).to_be_visible()
 
 
+
 # testing delivery of file message
 def test_file_message_delivered(pre_test_setup):
 	page1, page2 = pre_test_setup
@@ -41,10 +42,13 @@ def test_file_message_delivered(pre_test_setup):
 	unique_file_name_location = "Helper_Modules/Test_Files/"+unique_file_name
 	copy_file("Helper_Modules/Test_Files/sample_pdf.pdf", unique_file_name_location)
 	send_file_message_in_chat(page1, unique_file_name_location, unique_file_name)
+	page1.wait_for_load_state("domcontentloaded")
+	page1.wait_for_load_state("networkidle")
 	page2.wait_for_load_state("domcontentloaded")
 	page2.wait_for_load_state("networkidle")
 	delete_file(unique_file_name_location)
-	page1.close()
 	page2.wait_for_selector(f"text = {unique_file_name}")
+	page2.wait_for_timeout(2000)
 	expect(page2.locator(f"text = {unique_file_name}")).to_be_visible()
+
 
