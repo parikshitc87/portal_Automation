@@ -20,23 +20,23 @@ contact_messenger_emails = {
 	"sender": "compavaco1@mail7.io",
 	"receiver": "personavaco1@mail7.io"
 }
+webconf_creator = "webconfcreator@pk.avaco.io"
 
 
 def name():
-	random.shuffle(basic_string_array)
-	return basic_string_array[0]
+	return get_random_name().split()[0]
 
 
 def last_name():  # hhmmss
-	return ddmmyyhhmmss().split()[1].replace(':', '')
+	return get_random_name().split()[1]
 
 
 def unique_string():
 	return time_stamp_formatted()
 
 
-def hh_mm_ss():
-	return last_name()
+# def hh_mm_ss():
+# 	return last_name()
 
 
 def ddmmyyhhmmss():
@@ -46,7 +46,6 @@ def ddmmyyhhmmss():
 
 def time_stamp():  # dd/mm/yyyy hh:mm:ss:cs (centiseconds)
 	now = datetime.now().strftime("%d/%m/%Y %H:%M:%S:%f")[:-4]
-	print(get_random_name())
 	return str(now)
 
 

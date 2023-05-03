@@ -9,14 +9,12 @@ from Page_Elements.login_page_elements import LoginPage
 def test_register_person(set_up):  # Registers a person account
 	page = set_up
 	register(page, "person")
-	#   assert page.is_enabled(LoginPage.registration_success_message)
 	expect(page.locator(LoginPage.registration_success_message)).to_be_visible()
 
 
 def test_register_company(set_up):  # Registers a company account
 	page = set_up
 	register(page, "company")
-	#   assert page.is_enabled(LoginPage.registration_success_message)
 	expect(page.locator(LoginPage.registration_success_message)).to_be_visible()
 
 
@@ -63,11 +61,11 @@ def test_create_company_cc(set_up):
 
 
 def register(page, profile_type, email="any"):
-	if profile_type == "person":
-		page.get_by_role("button", name="Person Connect with friends and business partners Free to use").click()
-	else:
-		page.get_by_role("button", name="Company Create a page to extend your business 30 days free trial").click()
-		page.locator(LoginPage.company_name).fill(data_gen.name())
+	# if profile_type == "person":
+	# 	page.get_by_role("button", name="Person Connect with friends and business partners Free to use").click()
+	# else:
+	# 	page.get_by_role("button", name="Company Create a page to extend your business 30 days free trial").click()
+	# 	page.locator(LoginPage.company_name).fill(data_gen.name())
 	page.locator(LoginPage.first_name).fill(data_gen.name())
 	page.locator(LoginPage.last_name).fill(data_gen.last_name())
 	if email == "any":
@@ -116,8 +114,6 @@ def create_profile_person(page, profile_info):
 	if profile_info["profile_type"] == "Business":
 		page.locator("[placeholder=\"VAT ID\"]").fill("AutoVAT")
 	page.locator("button:has-text(\"Next\")").click()
-	# upload pp
-	# page.locator("[data-test-id=\"FormUploadButton\"] [data-test-id=\"Btn\"]").set_input_files("set source")
 	page.locator("button:has-text(\"Next\")").click()
 	return True
 
