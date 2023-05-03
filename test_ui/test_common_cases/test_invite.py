@@ -8,6 +8,8 @@ from test_ui.test_homePage import test_homepage
 def test_invite_new_user(login_person):  #
     page = login_person
     page.get_by_role("button", name="Profile").click()
+    page.wait_for_load_state("domcontentloaded")
+    page.wait_for_load_state("networkidle")
     page.get_by_role("link", name="Invite contacts").click()
     page.locator("#email input[type=\"text\"]").fill(data_gen.email())
     page.get_by_role("button", name="Send & Invite").click()

@@ -1,5 +1,5 @@
 class GroupsTab:
-    new_group_button = "button:has-text(\"New Group\")"
+    new_group_button = "button >> text = New Group"
     group_type_public_radio_button = "text=Group Type Public group Visible in search and under interests. Anyone can join C >> button"
     group_name_caption_field = "[placeholder=\"Caption\"]"
     group_description = "textarea[name=\"description\"]"
