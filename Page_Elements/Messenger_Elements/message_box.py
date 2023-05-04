@@ -35,6 +35,7 @@ def send_file_message_in_chat(page, file_location, file_name):
 	#page.wait_for_timeout(2000)
 	page.wait_for_selector(f"text = {file_name}", timeout=2000)
 	page.locator("div:nth-child(2) > .p-0").click()
-	page.wait_for_timeout(2000)
+	#page.wait_for_timeout(2000)
+	page.wait_for_selector(f"text = {file_name}", timeout=2000)
 
 
