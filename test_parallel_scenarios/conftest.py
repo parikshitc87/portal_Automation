@@ -4,7 +4,7 @@ from Helper_Modules.Common_Functions.portal import login_with
 from Helper_Modules.Test_Data import data_gen
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope='function')
 def context_1(playwright):
     browser = playwright.chromium.launch(headless=True) #, slow_mo=2000)
     context = browser.new_context()
@@ -21,7 +21,7 @@ def context_1(playwright):
     yield page
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope='function')
 def context_2(playwright):
     browser = playwright.chromium.launch(headless=True) #, slow_mo=2000)
     context = browser.new_context()

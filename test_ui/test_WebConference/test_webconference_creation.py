@@ -62,3 +62,4 @@ def test_private_webconference_creation(set_up):  # Create a Closed Webconferenc
 	page.locator(ConferencePage.create_button).click()
 	page.wait_for_selector(ConferencePage.conference_creation_success_message)
 	assert page.locator(ConferencePage.conference_creation_success_message).is_visible()
+	#//span[text() = "Copper 0305202317064657"]//parent::span//parent::main//parent::article//parent::div//parent::div//parent::article//child::div[@class='hidden ml-2 md:block']
