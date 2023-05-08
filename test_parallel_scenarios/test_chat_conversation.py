@@ -47,5 +47,15 @@ def test_file_message_delivered(pre_test_setup):
 	page2.wait_for_load_state("networkidle")
 	delete_file(unique_file_name_location)
 	#page2.wait_for_timeout(2000)
+	try:
+		page2.locator("data-test-id=MenuCaption >> text = contacts").click()
+		page2.wait_for_load_state("domcontentloaded")
+		page2.wait_for_load_state("networkidle")
+		page2.locator("//*[text() = \"📎 File\"]").click()
+		page2.wait_for_load_state("domcontentloaded")
+		page2.wait_for_load_state("networkidle")
+	except:
+		pass
+
 	page2.wait_for_selector(f"text = {unique_file_name}", timeout=10000, state="visible")
 	expect(page2.locator(f"text = {unique_file_name}")).to_be_visible()
