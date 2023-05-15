@@ -1,6 +1,7 @@
 import random
 from datetime import datetime
 from unique_names_generator import get_random_name
+from unique_names_generator.data import ADJECTIVES, STAR_WARS, COLORS, ANIMALS, COUNTRIES, LANGUAGES
 
 basic_string_array = ['testing', 'Lorem', 'Ipsum', 'Automation']
 password = 'Avaco000'
@@ -21,6 +22,35 @@ contact_messenger_emails = {
 	"receiver": "personavaco1@mail7.io"
 }
 webconf_creator = "webconfcreator@pk.avaco.io"
+
+
+def company_name():
+	temp = get_random_name(combo=[ADJECTIVES, STAR_WARS, COLORS, ANIMALS, LANGUAGES]).split()[:2]
+	return temp[0] + "-" + temp[1]
+
+
+def random_name():
+	return get_random_name(combo=[ADJECTIVES, STAR_WARS, COLORS, ANIMALS, LANGUAGES]).split()[:1]
+
+
+valid_emails = ["firstname.lastname@domain.com", "abc-d@mail.com", "abc.def@mail.com", "abc@mail.com",
+                "abc_def@mail.com", "abc.def@mail.cc", "abc.def@mail-archive.com", "abc.def@mail.org",
+                'abc.def@mail.com']
+invalid_emails = ["test", "#@%^%#$@#$@#.com", "@example.com", "Joe Smith <email@example.com>",
+                  "email@example@example.com",
+                  ".email@example.com", "email.@example.com",
+                  "email..email@example.com", "email@example.com (Joe Smith)", "email@example",
+                  "email@-example.com", "email@111.222.333.44444", "email@example..com",
+                  "Abc..123@example.com", "”(),:;<>[\\]@example.com", "just”not”right@example.com",
+                  "this\\ is\"really\"not\\allowed@example.com", "test @test.com"]
+
+profile_information = {
+	"company_name": company_name(),
+	"first_name": random_name(),
+	"last_name": random_name(),
+	"street": random_name(),
+
+}
 
 
 def name():

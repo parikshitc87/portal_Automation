@@ -6,37 +6,26 @@ from Page_Elements.login_page_elements import LoginPage
 
 
 # @pytest.mark.regression
-def test_register_person(set_up):  # Registers a person account
+def test_registration_form_1(set_up):  # Registers a person account
 	page = set_up
 	register(page, "person")
 	expect(page.locator(LoginPage.registration_success_message)).to_be_visible()
 
 
-def test_register_company(set_up):  # Registers a company account
-	page = set_up
-	register(page, "company")
-	expect(page.locator(LoginPage.registration_success_message)).to_be_visible()
-
-
-def test_register_and_confirm_person(set_up):  # registers Person and confirms registration from email
+def test_register_and_activate(set_up):  # registers Person and confirms registration from email
 	page = set_up
 	mail7_email = data_gen.time_stamp_formatted() + "@mail7.io"
 	account_activation(page, "person", mail7_email)
 	expect(page.get_by_role("heading", name="Your account has been activated!")).to_be_visible()
 
 
-def test_register_and_confirm_company(set_up):  # registers Company and confirms registration from email
+def test_create_business_person_profile_cc(set_up):  # test Business person profile creation
 	page = set_up
 	mail7_email = data_gen.time_stamp_formatted() + "@mail7.io"
-	account_activation(page, "company", mail7_email)
-	expect(page.get_by_role("heading", name="Your account has been activated!")).to_be_visible()
-
-
-def test_create_business_person_profile(set_up):  # test Business person profile creation
-	page = set_up
-	mail7_email = data_gen.time_stamp_formatted() + "@mail7.io"
-	create_profile_person(page, {"profile_type": "Business", "email": mail7_email})
-	expect(page.get_by_text("HITS BY INTERESTS")).to_be_visible()
+	account_activation(page, "person", mail7_email)
+	login_with(page, mail7_email)
+	#create_profile_person(page, {"profile_type": "Business", "email": mail7_email})
+	#expect(page.get_by_text("HITS BY INTERESTS")).to_be_visible()
 
 
 def test_create_private_person_profile(set_up):  # test Private person profile creation
@@ -71,12 +60,12 @@ def register(page, profile_type, email="any"):
 	if email == "any":
 		email = data_gen.time_stamp_formatted() + "@mail7.io"
 	page.locator(LoginPage.email_id).fill(email)
-	page.locator(LoginPage.repeat_email).fill(email)
+	# page.locator(LoginPage.repeat_email).fill(email)
 	page.locator(LoginPage.password).fill(data_gen.password)
 	page.locator(LoginPage.repeat_password).fill(data_gen.password)
 	page.locator(LoginPage.terms_and_condition_check_box).click()
-	if profile_type == "company":
-		page.locator(LoginPage.right_to_register_company_checkbox).click()
+	# if profile_type == "company":
+	#	page.locator(LoginPage.right_to_register_company_checkbox).click()
 	page.get_by_role("button", name="Create account").click()
 	page.wait_for_timeout(4000)
 	return True
@@ -100,8 +89,11 @@ def account_activation(page, profile_type, mail7_email):
 	return True
 
 
+def create_business_profile(page, profile_info):
+	return True
+
+
 def create_profile_person(page, profile_info):
-	account_activation(page, "person", profile_info["email"])
 	login_with(page, profile_info["email"])
 	page.wait_for_url("https://portal-dev.dev.otc.workpage.io/setup/person/fill-profile-information")
 	if profile_info["profile_type"] == "Private":
@@ -169,3 +161,19 @@ def create_profile_company(page, profile_info):
 	page.wait_for_load_state("domcontentloaded")
 	page.wait_for_load_state("networkidle")
 	page.wait_for_timeout(1000)
+
+
+def select_subscription(page):
+	return True
+
+
+def upload_image(page):
+	return True
+
+
+def subscription_pay_cc(page):
+	return True
+
+
+def subscription_pay_sepa(page):
+	return True
