@@ -46,7 +46,7 @@ def test_file_message_delivered(pre_test_setup):
 	page2.wait_for_load_state("domcontentloaded")
 	page2.wait_for_load_state("networkidle")
 	delete_file(unique_file_name_location)
-	#page2.wait_for_timeout(2000)
+	# page2.wait_for_timeout(2000)
 	try:
 		page2.locator("data-test-id=MenuCaption >> text = contacts").click()
 		page2.wait_for_load_state("domcontentloaded")
