@@ -116,3 +116,8 @@ def first_of_next_month():
 		month = str(int(month) + 1)
 
 	return month + '/' + day + '/' + year
+
+
+###################xxxxxXXXX######File location infos
+heavy_file_location = "Helper_Modules/Test_Files/Heavy_Files/50mb_test_excel.xls"
+heavy_image_location = "Helper_Modules/Test_Files/Heavy_Files/big_jpg.jpg"

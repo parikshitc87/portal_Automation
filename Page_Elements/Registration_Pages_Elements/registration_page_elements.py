@@ -1,4 +1,5 @@
 class RegistrationPage:
+
 	form_heading = 'text = Create account >> nth = 0'
 	create_button = 'text = Create account >> nth = 1'
 	first_name_label = 'text = First name'
@@ -21,6 +22,7 @@ class RegistrationPage:
 		password_label, password_input_field, confirm_password_label, confirm_password_input_field,
 		terms_of_use_checkbox, already_have_an_account_login, login_button_top, login_button_below_form
 	]
+	pass_field_must_have_eight_char_error = "text = The password field must be at least 8 characters"
 
 	def is_tooltip_displayed(page):
 		return page.get_by_role("complementary").get_by_text(
@@ -29,5 +31,8 @@ class RegistrationPage:
 	def is_password_mismatch_error_displayed(page):
 		return page.get_by_text("The inputs do not match.").nth(1).is_visible()
 
-	def is_password_should_be_eight_char_error_displayed(page):
-		return page.locator("text = The password field must be at least 8 characters").is_visible()
+	password_error_no_lowercase_letter = "text = The input does not have a lowercase letter"
+	password_error_no_capital_letter = "text = The input does not have a capital letter"
+	password_error_no_number = "text = The input does not have a number."
+
+
