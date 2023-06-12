@@ -8,8 +8,8 @@ from Page_Elements.ProfilePage_Elements.profile_page import ProfilePage
 from test_frontend.test_Groups.test_groups_creation import create_group
 
 
-def test_text_post_creation(login_person):  # Create a post with post button
-	page = login_person
+def test_text_post_creation(login_private_person):  # Create a post with post button
+	page = login_private_person
 	feed_post_text = data_gen.post_text()
 	page.locator(FeedPage.post_textbox).fill(feed_post_text)
 	# page.keyboard.press('Control+Enter')
@@ -30,8 +30,8 @@ def test_company_text_post_creation(login_company):
 	assert page.locator(f"text = {feed_post_text}").is_enabled()
 
 
-def test_delete_post(login_person):  # delete a post
-	page = login_person
+def test_delete_post(login_private_person):  # delete a post
+	page = login_private_person
 	# page.locator(FeedPage.cross_on_homepage_video_popup).nth(1).click()
 	feed_post_text = data_gen.post_text()
 	page.locator(FeedPage.post_textbox).fill(feed_post_text)
@@ -45,8 +45,8 @@ def test_delete_post(login_person):  # delete a post
 
 
 # Verify post share
-def test_share_post(login_person):
-	page = login_person
+def test_share_post(login_private_person):
+	page = login_private_person
 	page.wait_for_load_state("networkidle")
 	page.wait_for_load_state("domcontentloaded")
 	feed_post_text = data_gen.post_text()
@@ -63,8 +63,8 @@ def test_share_post(login_person):
 
 
 # Verify comment creation
-def test_create_comment(login_person):
-	page = login_person
+def test_create_comment(login_private_person):
+	page = login_private_person
 	# page.locator(FeedPage.cross_on_homepage_video_popup).nth(1).click()
 	feed_post_text = data_gen.post_text()
 	page.locator(FeedPage.post_textbox).fill(feed_post_text)
@@ -74,8 +74,8 @@ def test_create_comment(login_person):
 
 
 # Verify Image post creation
-def test_image_post_creation(login_person):
-	page = login_person
+def test_image_post_creation(login_private_person):
+	page = login_private_person
 	# page.locator(FeedPage.cross_on_homepage_video_popup).nth(1).click()
 	post_text = 'Image post' + ' ' + data_gen.unique_string()
 	# page.set_input_files(FeedPage.attach_images, 'Helper_Modules/Test_Files/test_image.jpeg')
@@ -94,8 +94,8 @@ def test_image_post_creation(login_person):
 
 
 # verify File post creation
-def test_file_post_creation(login_person):
-	page = login_person
+def test_file_post_creation(login_private_person):
+	page = login_private_person
 	# page.locator(FeedPage.cross_on_homepage_video_popup).nth(1).click()
 	post_text = 'File post' + ' ' + data_gen.unique_string()
 	with page.expect_file_chooser() as fc_info:
@@ -109,12 +109,9 @@ def test_file_post_creation(login_person):
 	assert page.locator(f"text = {post_text}").is_enabled()
 
 
-# assert page.locator(f"text = {post_text}").is_disabled()
-
-
 # create a post from own profile page
-def test_post_creation_from_own_profile(login_person):
-	page = login_person
+def test_post_creation_from_own_profile(login_private_person):
+	page = login_private_person
 	page.wait_for_load_state("networkidle")
 	page.wait_for_load_state("domcontentloaded")
 	# page.locator(HomePage.profile_icon_top_right).click()
@@ -131,8 +128,8 @@ def test_post_creation_from_own_profile(login_person):
 	assert page.locator(f"text = {post_text}").is_visible()
 
 
-def test_post_creation_on_group_wall(login_person):  # to be done after changing group test py
-	page = login_person
+def test_post_creation_on_group_wall(login_private_person):  # to be done after changing group test py
+	page = login_private_person
 	page.wait_for_load_state("networkidle")
 	page.wait_for_load_state("domcontentloaded")
 	page.locator(FeedPage.groups_link).click()
@@ -156,38 +153,76 @@ def test_post_creation_on_group_wall(login_person):  # to be done after changing
 	expect(page.locator(f"text = {post_text}")).to_be_enabled()
 
 
-def test_abusive_post_creation_home_wall(login_person):
-	page = login_person
+def test_abusive_post_creation_home_wall(login_private_person):
+	page = login_private_person
 	create_post(page, "bitch")
 	expect(page.locator(
 		"span:has-text(\"Post denied The post was denied by the language filter.\") svg").first).to_be_visible()
 
 
-def test_abusive_post_creation_group_wall(login_person):
-	page = login_person
+def test_abusive_post_creation_group_wall(login_private_person):
+	page = login_private_person
 	create_group(page)
 	create_post(page, "bitch")
 	expect(page.locator(
 		"span:has-text(\"Post denied The post was denied by the language filter.\") svg").first).to_be_visible()
 
 
-def test_post_large_file_upload_error(login_person):
-	page = login_person
+def test_post_large_file_upload_error(login_private_person):
+	page = login_private_person
 	create_post(page, data_gen.unique_string(), data_gen.heavy_file_location)
 	expect(page.locator(FeedPage.post_textbox_file_too_big_error)).to_be_visible()
 
 
-def test_post_large_image_upload_error(login_person):
-	page = login_person
+def test_post_large_image_upload_error(login_private_person):
+	page = login_private_person
 	create_post(page, data_gen.unique_string(), image_location=data_gen.heavy_image_location)
 	expect(page.locator(FeedPage.post_textbox_image_too_big_error)).to_be_visible()
 
 
-def test_post_files_not_allowed_error(set_up):
-	page = set_up
+def test_blank_text_post_creation_error(login_private_person):
+	page = login_private_person
+	page.get_by_role("button", name="Post").click()
+	assert page.locator(FeedPage.no_text_entered_error).is_visible()
 
 
-def create_post(page, feed_post_text, file_location=None, image_location=None):
+def test_conference_post_creation(login_business_person):
+	page = login_business_person
+	feed_post_text = data_gen.unique_string()
+	create_post(page, feed_post_text, conference=True)
+	expect(page.locator(f"text = {feed_post_text}")).to_be_visible()
+
+
+def test_emoji_text_post(login_business_person):
+	page = login_business_person
+	page.locator(FeedPage.feed_post_emoji_button).click()
+	page.get_by_text("😄").click()
+	feed_post_text = data_gen.unique_string()
+	page.locator(FeedPage.post_textbox).click()
+	page.keyboard.type(feed_post_text)
+	page.get_by_role("button", name="Post").click()
+	expect(page.locator(f"text = 😄{feed_post_text}")).to_be_visible()
+
+
+def test_feed_post_tooltip(login_business_person):
+	page = login_business_person
+	page.get_by_role("button", name="Create post").locator("[data-test-id=\"Btn\"]").click()
+	flag1 = FeedPage.post_settings_tooltip_elements_are_visible(page)
+	page.locator("header:has-text(\"Post Settings\")").get_by_role("button").click()
+	flag2 = FeedPage.post_settings_tooltip_elements_are_visible(page)
+	assert flag1 is True and flag2 is False
+
+
+def test_conference_post_tooltip(login_business_person):
+	page = login_business_person
+	page.get_by_role("button", name="Web conference").locator("[data-test-id=\"Btn\"]").click()
+	flag1 = FeedPage.conference_post_tooltip_elements_are_visible(page)
+	page.locator("header:has-text(\"Web conferences\")").get_by_role("button").click()
+	flag2 = FeedPage.conference_post_tooltip_elements_are_visible(page)
+	assert flag1 is True and flag2 is False
+
+
+def create_post(page, feed_post_text, file_location=None, image_location=None, ad_hoc=False, conference=False):
 	page.locator(FeedPage.post_textbox).fill(feed_post_text)
 
 	if file_location is not None:
@@ -203,6 +238,12 @@ def create_post(page, feed_post_text, file_location=None, image_location=None):
 			page.click(FeedPage.attach_images)
 		file_chooser = fc_info.value
 		file_chooser.set_files(image_location)
+
+	if ad_hoc is not False:
+		page.wait_for_selector(FeedPage.adhoc_switch).is_checked()
+
+	if conference is not False:
+		page.wait_for_selector(FeedPage.conference_post_tab).click()
 
 	# page.wait_for_load_state("networkidle")
 	page.get_by_role("button", name="Post").click()

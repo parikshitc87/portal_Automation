@@ -41,8 +41,8 @@ def test_closed_group_creation(set_up):
     assert page.locator(f"h2:has-text('{group_name}')").is_visible()
 
 
-def test_private_group_creation(login_person):
-    page = login_person
+def test_private_group_creation(login_private_person):
+    page = login_private_person
     page.locator(FeedPage.groups_link).click()
     page.wait_for_load_state("domcontentloaded")
     page.locator(GroupsTab.new_group_button).click()

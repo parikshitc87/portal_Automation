@@ -10,10 +10,6 @@ class ProfilePage:
     contact_cancel_request_confirmation = "text = cancel request"
     profile_feedTab = "[data-test-id=\"PageMenu\"] >> text=NewsFeed"
     profile_contactsTab = "[data-test-id=\"PageMenu\"] >> text=Contacts"
-    profile_contactsTab = "[data-test-id=\"PageMenu\"] >> text=Contacts"
-    profile_contactsTab = "[data-test-id=\"PageMenu\"] >> text=Contacts"
-    profile_contactsTab = "[data-test-id=\"PageMenu\"] >> text=Contacts"
-    profile_contactsTab = "[data-test-id=\"PageMenu\"] >> text=Contacts"
 
     ownProfile_contactsTab_invitationsReceivedSubTab = "text=\"Invitations received\""
     profile_contactsTab_contactsSubTab = "text=\"Contacts\" >> nth = 6"

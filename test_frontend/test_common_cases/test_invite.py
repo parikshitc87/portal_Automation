@@ -5,8 +5,8 @@ from Page_Elements.HomePage_Elements import home_page
 from test_frontend.test_homePage import test_homepage
 
 
-def test_invite_new_user(login_person):  #
-    page = login_person
+def test_invite_new_user(login_private_person):  #
+    page = login_private_person
     page.get_by_role("button", name="Profile").click()
     page.wait_for_load_state("domcontentloaded")
     page.wait_for_load_state("networkidle")

@@ -1,13 +1,13 @@
 import random
 from datetime import datetime
 from unique_names_generator import get_random_name
-from unique_names_generator.data import ADJECTIVES, STAR_WARS, COLORS, ANIMALS, COUNTRIES, LANGUAGES
+from unique_names_generator.data import STAR_WARS, ANIMALS, COLORS
 
 basic_string_array = ['testing', 'Lorem', 'Ipsum', 'Automation']
 password = 'Avaco000'
 
 private_person_email = 'pvtperosn1@pk.avaco.io'
-business_person_email = ''
+business_person_email = 'driver12@pk.avaco.io'
 company_account_email = 'automatedcomp2@pk.avaco.io'
 contact_account_email = ''
 follower_account_email = ''
@@ -25,12 +25,12 @@ webconf_creator = "webconfcreator@pk.avaco.io"
 
 
 def random_company_name():
-	temp = get_random_name(combo=[ADJECTIVES, STAR_WARS, COLORS, ANIMALS, LANGUAGES]).split()[:2]
-	return temp[0] + "-" + temp[1]
+	temp = get_random_name(combo=[COLORS, STAR_WARS, ANIMALS]).split()[:2]
+	return temp[0] + '-' + temp[1]
 
 
 def random_name():
-	return get_random_name(combo=[ADJECTIVES, STAR_WARS, COLORS, ANIMALS, LANGUAGES]).split()[:1]
+	return get_random_name(combo=[COLORS, STAR_WARS, ANIMALS]).split()[:1]
 
 
 valid_emails = [
@@ -119,5 +119,5 @@ def first_of_next_month():
 
 
 ###################xxxxxXXXX######File location infos
-heavy_file_location = "Helper_Modules/Test_Files/Heavy_Files/50mb_test_excel.xls"
+heavy_file_location = "Helper_Modules/Test_Files/Heavy_Files/big_excel.xls"
 heavy_image_location = "Helper_Modules/Test_Files/Heavy_Files/big_jpg.jpg"
