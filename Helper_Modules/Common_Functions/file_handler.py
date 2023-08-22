@@ -8,8 +8,8 @@ def rename_file(source_file_path, destination_file_path):
 
 
 def copy_file(source_file_path, destination_file_path):
-	shutil.copyfile(source_file_path, destination_file_path)
-	return True
+	return shutil.copyfile(source_file_path, destination_file_path)
+
 
 
 def delete_file(file_path):

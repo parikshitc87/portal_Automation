@@ -12,11 +12,12 @@ def test_text_post_creation(login_private_person):  # Create a post with post bu
 	page = login_private_person
 	feed_post_text = data_gen.post_text()
 	page.locator(FeedPage.post_textbox).fill(feed_post_text)
-	# page.keyboard.press('Control+Enter')
+	#page.keyboard.press('Control+Enter')
 	page.locator(FeedPage.post_button_person_profile).click()
 	page.wait_for_load_state("domcontentloaded")
 	page.wait_for_load_state('networkidle')
-	assert page.locator(f"text = {feed_post_text}").is_enabled()
+	page.wait_for_selector(f"text = {feed_post_text}")
+	expect(page.locator(f"text = {feed_post_text}")).to_be_visible()
 
 
 def test_company_text_post_creation(login_company):
@@ -132,7 +133,7 @@ def test_post_creation_on_group_wall(login_private_person):  # to be done after 
 	page = login_private_person
 	page.wait_for_load_state("networkidle")
 	page.wait_for_load_state("domcontentloaded")
-	page.locator(FeedPage.groups_link).click()
+	page.get_by_role("link", name="Groups").click()
 	page.wait_for_load_state("domcontentloaded")
 	page.locator(GroupsTab.new_group_button).click()
 	page.wait_for_load_state("domcontentloaded")
@@ -195,13 +196,17 @@ def test_conference_post_creation(login_business_person):
 
 def test_emoji_text_post(login_business_person):
 	page = login_business_person
-	page.locator(FeedPage.feed_post_emoji_button).click()
-	page.get_by_text("😄").click()
+	page.locator("//div[@class=\"h-full\"]/child::button").click(force=True)
+	page.wait_for_load_state("domcontentloaded")
+	page.wait_for_selector("text = 😄", timeout=200)
+	page.get_by_text("😄").click(force=True)
+	page.keyboard.press('Escape')
 	feed_post_text = data_gen.unique_string()
-	page.locator(FeedPage.post_textbox).click()
+	page.get_by_placeholder("Share something").click(force=True)
 	page.keyboard.type(feed_post_text)
-	page.get_by_role("button", name="Post").click()
-	expect(page.locator(f"text = 😄{feed_post_text}")).to_be_visible()
+	page.get_by_role("button", name="Post").click(force=True)
+	#page.wait_for_selector(f"text = 😄{feed_post_text}", timeout=700)
+	expect(page.locator(f"//div[text() = 😄{feed_post_text}]")).to_be_visible()
 
 
 def test_feed_post_tooltip(login_business_person):
@@ -243,12 +248,15 @@ def create_post(page, feed_post_text, file_location=None, image_location=None, a
 		page.wait_for_selector(FeedPage.adhoc_switch).is_checked()
 
 	if conference is not False:
-		page.wait_for_selector(FeedPage.conference_post_tab).click()
+		page.get_by_role("button", name="Web conference").click()
 
 	# page.wait_for_load_state("networkidle")
 	page.get_by_role("button", name="Post").click()
 	page.wait_for_load_state("domcontentloaded")
 	page.wait_for_load_state('networkidle')
+
+
+	return True
 
 
 def click_own_profile_left_xy(page):

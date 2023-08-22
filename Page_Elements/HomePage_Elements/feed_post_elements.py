@@ -1,7 +1,7 @@
 class FeedPage:
-	feed_post_emoji_button = 'text = Emoji'
+	feed_post_emoji_button = "//button[@title = \'Emoji\']"
 	post_textbox = "[placeholder=\"Share something\"]"
-	post_button_person_profile = 'button >> text = Post >> nth = 0'  # for person profile login
+	post_button_person_profile = '//button[@class = "button-primary"]'  # for person profile login
 	post_button_company_profile = 'button >> text = Post'  # for company profile login
 	top_post_kebab_menu_button = "text = Like Comment Share >> button >> nth=3"
 	top_post_share_button = "text = Share >> nth = 0"

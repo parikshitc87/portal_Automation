@@ -7,7 +7,7 @@ basic_string_array = ['testing', 'Lorem', 'Ipsum', 'Automation']
 password = 'Avaco000'
 
 private_person_email = 'pvtperosn1@pk.avaco.io'
-business_person_email = 'driver12@pk.avaco.io'
+business_person_email = 'autobusiness2@pk.avaco.io'
 company_account_email = 'automatedcomp2@pk.avaco.io'
 contact_account_email = ''
 follower_account_email = ''
