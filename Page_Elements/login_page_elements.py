@@ -15,3 +15,4 @@ class LoginPage:
     register_button = 'text = Register'
     register_button_company = "button:has-text(\"Register\")"
     registration_success_message = 'text = Registration succeeded'
+

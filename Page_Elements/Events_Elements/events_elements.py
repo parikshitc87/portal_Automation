@@ -1,13 +1,63 @@
-class EventsPageElements:
+class CreateEventsPageElements:
     new_events_button = "text = New event"
     event_name = "[placeholder=\"Caption\"]"
     start_date = "[placeholder=\"Select a start date\"]"
     start_date_hh = "input[name=\"time_h\"]"
     end_date_hh = "input[name=\"endTime_h\"]"
     end_date = "[placeholder=\"Select an end date\"]"
-    time_hh = "input[name=\"time_h\"]"
+    time_hh = "input[name='time_h']"
     time_mm = "[placeholder=\"mm\"]"
     next_button = "button:has-text(\"Next\")"
     create_button = "button:has-text(\"Create\")"
     event_created_success_message = "text=Event successfully created"
     private_event_radio_button = "text=Private event"
+    maximum_participants_button = "text = Maximum participants"
+    maximum_participants_text_field = "[placeholder=\"Maximum participants\"]"
+    location_button = "text = Location"
+    location_textfield = "[placeholder=\"Location, Street, City, ...\"]"
+    floor_textfield = "[placeholder=\"Venue, Floor, Room, etc.\"]"
+    description_textbox = "[placeholder = \"Write about the event ...\"]"
+    keyword_textbox = "[placeholder = \"Add keywords to make the event easier to find\"]"
+    start_time_hh = "#time div:has-text(\"HH 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23\") select"
+    end_time_hh = "#endTime div:has-text(\"HH 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23\") select"
+
+class EventsDetailsPage:
+    keywords = "//p[@class=\"mt-1 text-sm break-all\"]"
+    description = "//div[@class=\"flex flex-row flex-wrap justify-center\"]/p"
+    invite_persons_button = "//span[contains(text(),'Invite persons')]"
+    event_title = "//h1[@class = 'text-lg leading-snug break-words xl:text-xl']"
+    event_edit_button = "//button[@class='absolute right-0 mt-2 mr-2 button']"
+    event_type_label = "//div[@class = 'flex flex-col items-center text-center']//child::p[1]"
+    edit_details_button = "//span[contains(text(),'Edit')]"
+    share_button = "//*[@class='feather feather-share-2']"
+    going_interested_count = "//p[@class='mb-3 text-sm text-center']"
+    rsvp_dropdown = "//div[@class='mx-auto']"
+    rsvp_dropdown_current_state_going = "//span[@class='flex-initial']/child::span[text()='Going']"
+    rsvp_dropdown_current_state_interested = "//span[@class='flex-initial']/child::span[text()='Interested']"
+    rsvp_dropdown_current_state_not_interested = "//span[@class='flex-initial']/child::span[text()='Not interested']"
+    rsvp_dropdown_option_going = "//span[@class='flex-initial']/child::span[text()='Going']"
+    rsvp_dropdown_option_interested = "//span[@class='flex-initial']/child::span[text()='Interested']"
+    rsvp_dropdown_option_not_interested = "//span[@class='flex-initial']/child::span[text()='Not interested']"
+    rsvp_going_dropdown = "//*[@class='inline mr-2 text-lg text-ci feather feather-check-square']"
+    rsvp_op_notification_text_title_going = "//p[text()='Invite accepted' and @class='m-0 font-semibold']"
+    rsvp_op_notification_text_subtitle_going = "//p[text()='The invite has been accepted.' and @class='m-0 mt-2']"
+    rsvp_op_notification_text_title_interested = "//p[text()='Event interest saved' and @class='m-0 font-semibold']"
+    rsvp_op_notification_text_subtitle_interested = "//p[text()='Your interest to the event has been saved' and @class='m-0 mt-2']"
+    rsvp_op_notification_text_title_not_interested = "//p[text()='Invite declined' and @class = 'm-0 font-semibold']"
+    rsvp_op_notification_text_subtitle_not_interested = "//p[text()='The invite has been declined.' and @class = 'm-0 mt-2']"
+
+
+
+class InvitePersonsPopup:
+    invite_persons_popup_title = "//div[@class ='flex items-center']/h2"
+    cross_button = "//button[@class ='button button--small']"
+    invite_persons_to_this_event_text = "//div[@class='pb-4 px-c']/fieldset[1]/label/span"
+    search_profile_field = "//input[@placeholder='Search for profile ..']"
+    invite_button = "//button[@class='flex-none ml-2 button-primary']/span/span[2]"
+    invited_persons = "//fieldset[@class='mt-4'][1]/label/span"
+    no_persons_invited_text = "//fieldset[@class='mt-4'][2]/p"
+
+
+
+class EventEditPage:
+    keyword_textfield = "//input[@placeholder='Add some keywords']"

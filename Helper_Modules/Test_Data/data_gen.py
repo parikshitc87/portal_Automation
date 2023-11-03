@@ -50,8 +50,7 @@ profile_information = {
 	"company_name": random_company_name(),
 	"first_name": random_name(),
 	"last_name": random_name(),
-	"street": random_name(),
-
+	"street": random_name()
 }
 
 

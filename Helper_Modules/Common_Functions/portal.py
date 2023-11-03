@@ -19,3 +19,11 @@ def login_with(page, email):
     page.wait_for_load_state("domcontentloaded")
 
 
+def global_search(page, search_string):
+    page.get_by_role("textbox", name="Search Portal").fill(search_string)
+    page.get_by_role("textbox", name="Search Portal").press("Enter")
+    page.wait_for_load_state("networkidle")
+    page.wait_for_load_state("domcontentloaded")
+    return True
+
+

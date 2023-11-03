@@ -1,5 +1,4 @@
 from playwright.sync_api import expect
-
 from Helper_Modules.Common_Functions.portal import login_with
 from Helper_Modules.Test_Data import data_gen
 from Page_Elements.login_page_elements import LoginPage
@@ -8,14 +7,16 @@ from Page_Elements.login_page_elements import LoginPage
 # @pytest.mark.regression
 def test_registration_form_1(set_up):  # Registers a person account
 	page = set_up
-	register(page, "person")
+	email = data_gen.time_stamp_formatted() + "@mail7.io"
+	register(page, email)
 	expect(page.locator(LoginPage.registration_success_message)).to_be_visible()
 
 
 def test_register_and_activate(set_up):  # registers Person and confirms registration from email
 	page = set_up
 	mail7_email = data_gen.time_stamp_formatted() + "@mail7.io"
-	account_activation(page, "person", mail7_email)
+	register(page, mail7_email)
+	account_activation(page, mail7_email)
 	expect(page.get_by_role("heading", name="Your account has been activated!")).to_be_visible()
 
 
@@ -49,18 +50,10 @@ def test_create_company_cc(set_up):
 	expect(page.get_by_role("heading", name="Your subscription has been activated")).to_be_visible()
 
 
-def register(page, profile_type, email="any"):
-	# if profile_type == "person":
-	# 	page.get_by_role("button", name="Person Connect with friends and business partners Free to use").click()
-	# else:
-	# 	page.get_by_role("button", name="Company Create a page to extend your business 30 days free trial").click()
-	# 	page.locator(LoginPage.company_name).fill(data_gen.name())
+def register(page, email):
 	page.locator(LoginPage.first_name).fill(data_gen.name())
 	page.locator(LoginPage.last_name).fill(data_gen.last_name())
-	if email == "any":
-		email = data_gen.time_stamp_formatted() + "@mail7.io"
 	page.locator(LoginPage.email_id).fill(email)
-	# page.locator(LoginPage.repeat_email).fill(email)
 	page.locator(LoginPage.password).fill(data_gen.password)
 	page.locator(LoginPage.repeat_password).fill(data_gen.password)
 	page.locator(LoginPage.terms_and_condition_check_box).click()
@@ -71,16 +64,14 @@ def register(page, profile_type, email="any"):
 	return True
 
 
-def account_activation(page, profile_type, mail7_email):
-	register(page, profile_type, mail7_email)
-	page.goto("https://www.mail7.io/")
-	page.locator("input[name=\"username\"] >> nth = 0").fill(mail7_email.split("@")[0])
-	page.keyboard.press("Enter")
-	page.wait_for_url("https://console.mail7.io/admin/inbox/inbox")
+def account_activation(page, mail7_email):
+	page.goto('mail7.io')
 	page.wait_for_timeout(2000)
-	page.get_by_text("Confirm registration").click()
+	page.wait_for_load_state("domcontentloaded")
+	page.wait_for_load_state("networkidle")
+	#page.locator("//div[@class='lms' and contains(text(), 'Confirm registration')]").click()
 	page.wait_for_timeout(2000)
-	activation_link = page.frame_locator("iframe").get_by_role("link", name="Confirm registration now").get_attribute(
+	activation_link = page.locator("//a[contains(text(), 'Confirm registration now')]").get_attribute(
 		'href')
 	page.goto(activation_link)
 	page.wait_for_load_state("domcontentloaded")
